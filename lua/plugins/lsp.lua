@@ -1,3 +1,4 @@
+
 return {
   {
     "williamboman/mason.nvim",
@@ -15,6 +16,8 @@ return {
         ensure_installed = {
           "rust_analyzer",
         },
+        -- IMPORTANT: disable automatic_enable (only works on 0.11+)
+        automatic_installation = false,
       })
     end,
   },
@@ -36,9 +39,8 @@ return {
     end,
   },
 
-  -- Required for nvim-dap-ui (new dependency)
+  -- Required for nvim-dap-ui
   {
     "nvim-neotest/nvim-nio",
   },
 }
-
