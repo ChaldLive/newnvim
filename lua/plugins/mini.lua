@@ -1,3 +1,4 @@
+
 -- Mini.lua for all the fun stuff in my system
 return {
   {
@@ -10,14 +11,41 @@ return {
       require("mini.surround").setup()
       require("mini.comment").setup()
       require("mini.pairs").setup()
-      require("mini.files").setup()
-      require("mini.git").setup()   -- <-- Git support added here
+
+      ----------------------------------------------------------------------
+      -- Mini.files with custom split actions (from utils/mini_files.lua)
+      ----------------------------------------------------------------------
+      local mf_utils = require("utils.mini_files")
+
+      require("mini.files").setup({
+        mappings = {
+          go_in_split  = "-",  -- horizontal split
+          go_in_vsplit = "|",  -- vertical split
+        },
+      })
+
+      -- Wire custom actions
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "MiniFilesAction",
+        callback = function(event)
+          if event.data.action == "go_in_split" then
+            mf_utils.open_in_split()
+          elseif event.data.action == "go_in_vsplit" then
+            mf_utils.open_in_vsplit()
+          end
+        end,
+      })
+
+      ----------------------------------------------------------------------
+      -- Mini.pick, Mini.git, and the rest
+      ----------------------------------------------------------------------
+      require("mini.pick").setup()
+      require("mini.git").setup()
 
       ----------------------------------------------------------------------
       -- Statusline Enhancements
       ----------------------------------------------------------------------
 
-      -- Extra components: LSP client + filetype
       local function lsp_client()
         local clients = vim.lsp.get_active_clients({ bufnr = 0 })
         if next(clients) == nil then
@@ -53,7 +81,7 @@ return {
       })
 
       ----------------------------------------------------------------------
-      -- Statusline Highlights (tasteful, modern, Catppuccin‑like)
+      -- Statusline Highlights
       ----------------------------------------------------------------------
       vim.api.nvim_set_hl(0, "MiniStatuslineMode",     { fg = "#1e1e2e", bg = "#89b4fa", bold = true })
       vim.api.nvim_set_hl(0, "MiniStatuslineDevinfo",  { fg = "#cdd6f4", bg = "#313244" })
@@ -62,7 +90,7 @@ return {
       vim.api.nvim_set_hl(0, "MiniStatuslineInactive", { fg = "#6c7086", bg = "#1e1e2e" })
 
       ----------------------------------------------------------------------
-      -- Optional: floating notifications (harmless and nice)
+      -- Floating notifications
       ----------------------------------------------------------------------
       require("mini.notify").setup()
       vim.notify = require("mini.notify").make_notify()

@@ -27,3 +27,39 @@ map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 -- Basic quality of life
 map("n", "<leader>w", ":w<CR>")
 map("n", "<leader>q", ":q<CR>")
+-- Basic mini.Notify show your history
+map( "n", "<leader>nh", function() MiniNotify.show_history()  end,{ desc = "Notification History",})
+
+
+-- Mini.pick: file picker
+
+vim.schedule(function()
+  require("mini.pick")  -- ensures plugin is loaded
+  map("n", "<leader>pf", function()
+    MiniPick.builtin.files()
+  end,{ desc = "find files"})
+
+  map("n", "<leader>pg", function()
+    MiniPick.builtin.grep_live()
+  end, { desc = "Live Grep" })
+
+  map("n", "<leader>pb", function()
+    MiniPick.builtin.buffers()
+  end, { desc = "Pick Buffers" })
+
+  map("n", "<leader>pr", function()
+    MiniPick.builtin.recent()
+  end, { desc = "Recent Files" })
+end)
+
+-- Horizontal split
+map("n", "<leader>ph", function()
+  vim.cmd("split")
+  vim.cmd("wincmd j")
+end, { desc = "Horizontal split and move cursor" })
+
+-- Vertical split
+map("n", "<leader>pv", function()
+  vim.cmd("vsplit")
+  vim.cmd("wincmd l")
+end, { desc = "Vertical split and move cursor" })
