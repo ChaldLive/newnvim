@@ -6,7 +6,9 @@ return {
     version = false,
 
     config = function()
+      ----------------------------------------------------------------------
       -- Core editing modules
+      ----------------------------------------------------------------------
       require("mini.ai").setup()
       require("mini.surround").setup()
       require("mini.comment").setup()
@@ -37,15 +39,16 @@ return {
       })
 
       ----------------------------------------------------------------------
-      -- Mini.pick, Mini.git, and the rest
+      -- Mini.pick global configuration
+      -- IMPORTANT: This does NOT start a picker. It only configures it.
       ----------------------------------------------------------------------
-      require("mini.pick").setup()
-      require("mini.git").setup()
+      require("mini.pick").setup({
+        use_ui_select = false,   -- Force Mini.pick to use its own picker
+      })
 
       ----------------------------------------------------------------------
       -- Statusline Enhancements
       ----------------------------------------------------------------------
-
       local function lsp_client()
         local clients = vim.lsp.get_active_clients({ bufnr = 0 })
         if next(clients) == nil then

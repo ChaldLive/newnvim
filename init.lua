@@ -10,4 +10,6 @@ require("config.lazy")
 -- Everything else AFTER Lazy
 require("options")
 require("keymap")
+-- Enable spelcheck and other cool stuff.
 
+require("writing").setup()
