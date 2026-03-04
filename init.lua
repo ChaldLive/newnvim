@@ -13,3 +13,7 @@ require("keymap")
 -- Enable spelcheck and other cool stuff.
 
 require("writing").setup()
+
+-- Enable autoloading of custom macroes / commands.
+require("macros")
+require("macro_commands")
