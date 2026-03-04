@@ -9,6 +9,7 @@ end, { desc = "Open mini.files" })
 
 map("n", "<leader>w", ":w<CR>", { desc = "Write buffer" })
 map("n", "<leader>q", ":q<CR>", { desc = "Quit window" })
+map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 
 -- Notification history
 map("n", "<leader>nh", function()

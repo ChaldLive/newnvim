@@ -12,4 +12,5 @@ o.tabstop = 2
 o.smartindent = true
 o.termguicolors = true
 o.signcolumn = "yes"
-
+o.undofile = true
+o.undodir = vim.fn.stdpath("state") .. "/undo"
