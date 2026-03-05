@@ -25,5 +25,46 @@ function M.surround(left, right)
 	right = right or ")"
 	vim.cmd("normal! viw" .. "s" .. left .. "\\0" .. right)
 end
+-- Adding table to markdown docs, the easy way.
+-- Caution. This only works for markdown docs.
+local function make_cell(width)
+	return string.rep(" ", width)
+end
+
+local function make_row(cols, width)
+	local cells = {}
+	for _ = 1, cols do
+		table.insert(cells, make_cell(width))
+	end
+	return "| " .. table.concat(cells, " | ") .. " |"
+end
+
+local function make_separator(cols, width)
+	local cells = {}
+	for _ = 1, cols do
+		table.insert(cells, string.rep("-", width))
+	end
+	return "| " .. table.concat(cells, " | ") .. " |"
+end
+
+function M.insert_table(cols, rows, headers, width)
+	cols = tonumber(cols) or 3
+	rows = tonumber(rows) or 3
+	width = tonumber(width) or 6
+	headers = headers == "true" or headers == "1" or headers == "yes"
+
+	local lines = {}
+
+	if headers then
+		table.insert(lines, make_row(cols, width)) -- header row
+		table.insert(lines, make_separator(cols, width)) -- separator
+	end
+
+	for _ = 1, rows do
+		table.insert(lines, make_row(cols, width))
+	end
+
+	vim.api.nvim_put(lines, "l", true, true)
+end
 
 return M
