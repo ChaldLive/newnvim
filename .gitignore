@@ -1,3 +1,10 @@
+
+# ─────────────────────────────────────────────
+# Nvim spelling infra-structure no reason to 
+# add it to the git repo
+# ─────────────────────────────────────────────
+Spell/
+
 # ─────────────────────────────────────────────
 # Lazy.nvim spillover (state, lockfiles, cache)
 # ─────────────────────────────────────────────

@@ -1,6 +1,6 @@
--- ~/.config/nvim/lua/live-commands.lua
+-- ~/.config/nvim/lua/live_commands.lua
 
-local live = require("live-commands")
+local live = require("live-command")
 local macros = require("macros")
 
 -- Collect all macro names for completion
@@ -19,7 +19,7 @@ end
 
 -- Parse "<module>.<function> arg1 arg2 ..."
 local function parse(input)
-	local parts = vim.split(input, " ", { trimempty = true })
+	local parts = vim.split(input, "%s+", { trimempty = true })
 	local head = parts[1]
 	local args = {}
 
@@ -34,11 +34,22 @@ end
 live.setup({
 	commands = {
 		Macro = {
-			args = function(input)
-				return collect()
+			-- v2 API: completion(ctx)
+			completion = function(ctx)
+				local parts = vim.split(ctx.args, "%s+", { trimempty = true })
+
+				-- Only complete the macro name
+				if #parts <= 1 then
+					return collect()
+				end
+
+				-- After first token → no completion
+				return { "" }
 			end,
-			fn = function(input)
-				local module, fn, args = parse(input)
+
+			-- v2 API: command(ctx)
+			command = function(ctx)
+				local module, fn, args = parse(ctx.args)
 				local mod = macros[module]
 				if not mod then
 					print("Unknown module: " .. module)
@@ -51,7 +62,13 @@ live.setup({
 				end
 				func(unpack(args))
 			end,
+
 			description = "Run a macro from the macros/ folder",
 		},
 	},
 })
+
+return {
+	collect = collect,
+	parse = parse,
+}
