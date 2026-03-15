@@ -10,14 +10,6 @@ if ok and type(ck) == "table" and ck.setup then
   ck.setup({})
 end
 
--- Temporary debug autocmd to see context switching live
-vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "BufEnter" }, {
-  callback = function()
-    local ctx = require("context-keybinder.core.context").get_context()
-    require("context-keybinder.core.dispatcher").apply(ctx, 0)
-  end,
-})
-
 -- Lazy SECOND
 require("config.lazy")
 

@@ -1,51 +1,28 @@
 -- ============================================
--- 1. Leader and basic settings
+-- Keymap.lua — clean, sharp, editing‑focused
 -- ============================================
+
 local map = vim.keymap.set
 
-map("n", "<leader>e", function()
-	require("mini.files").open()
-end, { desc = "Open mini.files" })
+-- ============================================
+-- 1. Leader and basic actions
+-- ============================================
 
 map("n", "<leader>w", ":w<CR>", { desc = "Write buffer" })
 map("n", "<leader>q", ":q<CR>", { desc = "Quit window" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
 
--- Notification history
-map("n", "<leader>nh", function()
-	MiniNotify.show_history()
-end, { desc = "Notification History" })
+-- If you choose Neo-tree or Oil, we’ll add mappings here later.
+-- For now, <leader>e is intentionally left unused.
 
 -- ============================================
--- 2. Telescope / Mini.pick
+-- 2. Telescope (your main picker)
 -- ============================================
 
--- Telescope
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
-
--- Mini.pick (loaded async)
-vim.schedule(function()
-	require("mini.pick")
-
-	map("n", "<leader>pf", function()
-		MiniPick.builtin.files()
-	end, { desc = "Pick files" })
-
-	map("n", "<leader>pg", function()
-		MiniPick.builtin.grep_live()
-	end, { desc = "Live Grep" })
-
-	map("n", "<leader>pb", function()
-		MiniPick.builtin.buffers()
-	end, { desc = "Pick Buffers" })
-
-	map("n", "<leader>pr", function()
-		MiniPick.builtin.recent()
-	end, { desc = "Recent Files" })
-end)
 
 -- ============================================
 -- 3. LSP
@@ -84,7 +61,6 @@ end, { desc = "Format buffer" })
 -- 6. Filetype-specific mappings
 -- ============================================
 
--- Markdown mappings (your prose + documentation workflow)
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "markdown",
 	callback = function()
@@ -98,6 +74,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		map("n", "]s", function()
 			vim.fn.search("[.!?]\\s", "W")
 		end, opts)
+
 		map("n", "[s", function()
 			vim.fn.search("[.!?]\\s", "bW")
 		end, opts)
@@ -114,7 +91,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		map("n", "gi*", "vi*", opts)
 		map("n", "ga*", "va*", opts)
 
-		-- Glow preview (manual, as you prefer)
+		-- Glow preview
 		map("n", "<leader>mp", ":Glow<CR>", opts)
 	end,
 })
