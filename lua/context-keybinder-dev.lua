@@ -12,5 +12,6 @@ package.path = package.path .. ";" .. plugin_path .. "/?/init.lua"
 package.path = package.path .. ";" .. plugin_path .. "/?/?.lua"
 
 return require("context-keybinder").setup({
-	log_level = "off", -- or "verbose", "info", "error", "warn"
+	log_level = "off", -- "off" or "verbose", "info", "error", "warn", "debug"
+	log_notify = true,
 })

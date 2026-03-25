@@ -28,11 +28,10 @@ return {
 
 				-- Message routing
 				messages = {
-					view = "mini", -- small, unobtrusive messages
-					view_error = "notify",
-					view_warn = "notify",
-					view_history = "messages",
-					view_search = "virtualtext",
+
+					enabled = true,
+					view = "mini",
+					align = "message",
 				},
 
 				-- Notification handling
