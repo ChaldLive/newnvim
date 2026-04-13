@@ -11,6 +11,7 @@ local map = vim.keymap.set
 map("n", "<leader>w", ":w<CR>", { desc = "Write buffer" })
 map("n", "<leader>q", ":q<CR>", { desc = "Quit window" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
+map("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open Oil" })
 
 -- If you choose Neo-tree or Oil, we’ll add mappings here later.
 -- For now, <leader>e is intentionally left unused.

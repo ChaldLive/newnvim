@@ -12,7 +12,7 @@ vim.g.maplocalleader = " "
 -- So you MUST NOT wrap it in pcall or check for ck.setup.
 -- Just require it directly so the plugin actually loads.
 --------------------------------------------------------------------------------
-require("context-keybinder-dev")
+--require("context-keybinder-dev")
 
 --------------------------------------------------------------------------------
 -- Lazy SECOND
