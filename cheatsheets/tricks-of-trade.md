@@ -2,7 +2,7 @@ Ah, excellent. setlocal is where Neovim quietly turns from a text editor into a 
 
 ⸻
 
-10 practical setlocal tricks in Neovim
+## 10 practical setlocal tricks in Neovim
 
 1. Turn Markdown into a writing environment
 
