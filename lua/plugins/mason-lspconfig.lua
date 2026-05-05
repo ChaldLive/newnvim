@@ -2,10 +2,11 @@
 
 return {
 	"williamboman/mason-lspconfig.nvim",
-	dependencies = { "williamboman/mason.nvim" },
+	dependencies = { "williamboman/mason.nvim", "neovim/nvim-lspconfig" },
 
 	config = function()
 		require("mason-lspconfig").setup({
+			automatic_enable = false, -- requires Neovim 0.11+; using handlers instead
 			ensure_installed = {
 				"lua_ls",
 				"ts_ls",
