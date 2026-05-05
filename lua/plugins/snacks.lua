@@ -342,7 +342,13 @@ return {
 			end,
 			desc = "Toggle dim",
 		},
-
+		{
+			"<leader>fc",
+			function()
+				Snacks.picker.commands()
+			end,
+			desc = "Commands",
+		},
 		-- Word navigation (uses snacks.words)
 		{
 			"[[",
