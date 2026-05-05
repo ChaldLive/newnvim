@@ -11,33 +11,14 @@ local map = vim.keymap.set
 map("n", "<leader>w", ":w<CR>", { desc = "Write buffer" })
 map("n", "<leader>q", ":q<CR>", { desc = "Quit window" })
 map("n", "<leader>u", "<cmd>UndotreeToggle<CR>", { desc = "Toggle Undotree" })
-map("n", "<leader>e", "<CMD>Oil<CR>", { desc = "Open Oil" })
 
--- If you choose Neo-tree or Oil, we’ll add mappings here later.
--- For now, <leader>e is intentionally left unused.
-
--- ============================================
--- 2. Telescope (your main picker)
--- ============================================
-
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Help" })
-
--- ============================================
--- 3. LSP
--- ============================================
-
+-- LSP (hover/rename/code action — navigation lives in snacks picker keymaps)
 map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
-map("n", "gd", vim.lsp.buf.definition, { desc = "Go to definition" })
-map("n", "gr", vim.lsp.buf.references, { desc = "References" })
-map("n", "gi", vim.lsp.buf.implementation, { desc = "Go to implementation" })
 map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Rename symbol" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
 
 -- ============================================
--- 4. Window management
+-- 3. Window management
 -- ============================================
 
 map("n", "<leader>ph", function()
@@ -51,7 +32,7 @@ map("n", "<leader>pv", function()
 end, { desc = "Vertical split and move cursor" })
 
 -- ============================================
--- 5. Formatting
+-- 4. Formatting
 -- ============================================
 
 map("n", "<leader>f", function()
@@ -59,7 +40,7 @@ map("n", "<leader>f", function()
 end, { desc = "Format buffer" })
 
 -- ============================================
--- 6. Filetype-specific mappings
+-- 5. Filetype-specific mappings
 -- ============================================
 
 vim.api.nvim_create_autocmd("FileType", {

@@ -3,13 +3,13 @@ return {
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 
 	config = function()
-		-- Dracula palette (background-focused)
+		-- Catppuccin macchiato palette
 		local colors = {
-			clean = { fg = "#000000", bg = "#50fa7b" }, -- black on green
-			modified = { fg = "#000000", bg = "#f1fa8c" }, -- black on yellow
-			dirty = { fg = "#ffffff", bg = "#ff5555" }, -- white on red
-			staged = { fg = "#000000", bg = "#ff79c6" }, -- black on magenta
-			none = { fg = "#ffffff", bg = "#6272a4" }, -- white on grey
+			clean = { fg = "#181926", bg = "#a6da95" }, -- crust on green
+			modified = { fg = "#181926", bg = "#eed49f" }, -- crust on yellow
+			dirty = { fg = "#cad3f5", bg = "#ed8796" }, -- text on red
+			staged = { fg = "#181926", bg = "#c6a0f6" }, -- crust on mauve
+			none = { fg = "#cad3f5", bg = "#5b6078" }, -- text on surface2
 		}
 
 		-- Determine Git color based on gitsigns status
@@ -53,7 +53,7 @@ return {
 
 		require("lualine").setup({
 			options = {
-				theme = "Dracula",
+				theme = "catppuccin",
 				section_separators = { left = "", right = "" },
 				component_separators = { left = "", right = "" },
 				icons_enabled = true,

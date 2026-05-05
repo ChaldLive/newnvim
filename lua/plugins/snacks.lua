@@ -306,15 +306,6 @@ return {
 			desc = "Dismiss notifications",
 		},
 
-		-- Explorer
-		{
-			"<leader>e",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File explorer",
-		},
-
 		-- Terminal
 		{
 			"<C-\\>",

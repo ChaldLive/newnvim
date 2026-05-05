@@ -1,7 +1,4 @@
 -- lua/plugins/lsp/init.lua
-return {
-  { import = "plugins.lsp.rust" },
-  -- Add more languages here:
-  -- { import = "plugins.lsp.lua" },
-  -- { import = "plugins.lsp.json" },
-}
+-- Language-specific LSP overrides go here.
+-- Rust is handled via the mason-lspconfig handler in mason-lspconfig.lua.
+return {}
