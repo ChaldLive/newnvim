@@ -4,7 +4,7 @@ return {
   {
     "mikavilpas/yazi.nvim",
     name = "yazi.nvim", -- force correct plugin identity
-    version = "*",
+    commit = "160c105", -- pinned: versions after this require Neovim 0.11 (winborder)
     event = "VeryLazy",
 
     dependencies = {
