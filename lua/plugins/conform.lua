@@ -12,7 +12,7 @@ return {
       if vim.api.nvim_buf_line_count(bufnr) > 5000 then
         return
       end
-      return { timeout_ms = 500, lsp_fallback = true }
+      return { timeout_ms = 2000, lsp_fallback = true }
     end,
 
     formatters_by_ft = {
