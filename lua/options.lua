@@ -15,3 +15,4 @@ o.signcolumn = "yes"
 o.undofile = true
 o.cursorline = true
 o.undodir = vim.fn.stdpath("state") .. "/undo"
+o.textwidth = 120

@@ -73,7 +73,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		map("n", "gi*", "vi*", opts)
 		map("n", "ga*", "va*", opts)
 
-		-- Glow preview
-		map("n", "<leader>mp", ":Glow<CR>", opts)
+		-- Marked preview
+		map("n", "<leader>mp", ':!open -a "Marked 2" %<CR><CR>', opts)
 	end,
 })
