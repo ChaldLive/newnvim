@@ -38,9 +38,21 @@ end, { desc = "Vertical split and move cursor" })
 map("n", "<leader>f", function()
 	require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format buffer" })
+-- ============================================
+-- 5. Local buffer spelling lang
+-- ============================================
+map("n", "<leader>ld", function()
+	vim.opt_local.spell = true
+	vim.opt_local.spelllang = "da"
+end, { desc = "Enable danish spell control" })
+
+map("n", "<leader>le", function()
+	vim.opt_local.spell = true
+	vim.opt_local.spelllang = "en"
+end, { desc = "Enable English spell control" })
 
 -- ============================================
--- 5. Filetype-specific mappings
+-- 6. Filetype-specific mappings
 -- ============================================
 
 vim.api.nvim_create_autocmd("FileType", {
