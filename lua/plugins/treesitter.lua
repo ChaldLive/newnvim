@@ -6,9 +6,9 @@ return {
     build = ":TSUpdate",
 
     config = function()
-      local ok, tsconfig = pcall(require, "nvim-treesitter.config")
+      local ok, tsconfig = pcall(require, "nvim-treesitter.configs")
       if not ok then
-        vim.notify("nvim-treesitter.config not found", vim.log.levels.ERROR)
+        vim.notify("nvim-treesitter.configs not found", vim.log.levels.ERROR)
         return
       end
 

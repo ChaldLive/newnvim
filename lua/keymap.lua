@@ -85,7 +85,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		map("n", "gi*", "vi*", opts)
 		map("n", "ga*", "va*", opts)
 
-		-- Marked preview
-		map("n", "<leader>mp", ':!open -a "Marked 2" %<CR><CR>', opts)
+		-- Markdown preview
+		map("n", "<leader>mp", ':silent !md-viewer % &<CR>', opts)
 	end,
 })

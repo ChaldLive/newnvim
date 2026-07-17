@@ -6,6 +6,7 @@ return {
     dependencies = {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
+      "williamboman/mason.nvim",
     },
 
     keys = {
@@ -35,12 +36,20 @@ return {
       vim.fn.sign_define("DapStopped",             { text = "●", texthl = "MoreMsg", linehl = "CursorLine" })
 
       -- -----------------------------------------------------------------------
-      -- Rust — lldb-dap via Homebrew LLVM (stdio mode, required on ARM macOS)
+      -- Rust — codelldb via Mason (cross-platform, no system lldb required)
       -- -----------------------------------------------------------------------
-      dap.adapters.lldb = {
-        type    = "executable",
-        command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
-        name    = "lldb",
+      local mason_registry = require("mason-registry")
+      local codelldb_root = mason_registry.get_package("codelldb"):get_install_path() .. "/extension/"
+      local codelldb_path = codelldb_root .. "adapter/codelldb"
+      local liblldb_path = codelldb_root .. "lldb/lib/liblldb.so"
+
+      dap.adapters.codelldb = {
+        type = "server",
+        port = "${port}",
+        executable = {
+          command = codelldb_path,
+          args = { "--liblldb", liblldb_path, "--port", "${port}" },
+        },
       }
 
       -- Auto-detect the cargo binary from metadata; falls back to a prompt.
@@ -58,7 +67,7 @@ return {
       dap.configurations.rust = {
         {
           name        = "Debug",
-          type        = "lldb",
+          type        = "codelldb",
           request     = "launch",
           program     = cargo_binary,
           cwd         = "${workspaceFolder}",
@@ -66,7 +75,7 @@ return {
         },
         {
           name        = "Debug (with args)",
-          type        = "lldb",
+          type        = "codelldb",
           request     = "launch",
           program     = cargo_binary,
           args        = function()
