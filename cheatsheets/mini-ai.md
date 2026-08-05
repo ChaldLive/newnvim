@@ -36,20 +36,20 @@ require%("%myawsomeplugin%"%)
 
 ## 🔧 **2. Escaping special characters**
 
-|Character|Escape as|Meaning|
-|---|---|---|
-|`(`|`%(`|literal `(`|
-|`)`|`%)`|literal `)`|
-|`.`|`%.`|literal `.`|
-|`%`|`%%`|literal `%`|
-|`+`|`%+`|literal `+`|
-|`-`|`%-`|literal `-`|
-|`*`|`%*`|literal `*`|
-|`?`|`%?`|literal `?`|
-|`[`|`%[`|literal `[`|
-|`]`|`%]`|literal `]`|
-|`^`|`%^`|literal `^`|
-|`$`|`%$`|literal `$`|
+| Character | Escape as | Meaning     |
+| --------- | --------- | ----------- |
+| `(`       | `%(`      | literal `(` |
+| `)`       | `%)`      | literal `)` |
+| `.`       | `%.`      | literal `.` |
+| `%`       | `%%`      | literal `%` |
+| `+`       | `%+`      | literal `+` |
+| `-`       | `%-`      | literal `-` |
+| `*`       | `%*`      | literal `*` |
+| `?`       | `%?`      | literal `?` |
+| `[`       | `%[`      | literal `[` |
+| `]`       | `%]`      | literal `]` |
+| `^`       | `%^`      | literal `^` |
+| `$`       | `%$`      | literal `$` |
 
 If in doubt: **escape it**.
 
@@ -57,24 +57,24 @@ If in doubt: **escape it**.
 
 ## 🔍 **3. Useful pattern tokens**
 
-|Token|Meaning|Example|
-|---|---|---|
-|`%a`|letter|`%a+` → words|
-|`%d`|digit|`%d%d%d` → 3 digits|
-|`%w`|alphanumeric|`%w+`|
-|`%s`|whitespace|`%s+`|
-|`%p`|punctuation|`%p+`|
-|`.`|any character|`a.b` → `acb`, `a_b`|
+| Token | Meaning       | Example              |
+| ----- | ------------- | -------------------- |
+| `%a`  | letter        | `%a+` → words        |
+| `%d`  | digit         | `%d%d%d` → 3 digits  |
+| `%w`  | alphanumeric  | `%w+`                |
+| `%s`  | whitespace    | `%s+`                |
+| `%p`  | punctuation   | `%p+`                |
+| `.`   | any character | `a.b` → `acb`, `a_b` |
 
 ---
 
 ## 📏 **4. Quantifiers**
 
-|Symbol|Meaning|
-|---|---|
-|`*`|zero or more|
-|`+`|one or more|
-|`?`|zero or one|
+| Symbol | Meaning      |
+| ------ | ------------ |
+| `*`    | zero or more |
+| `+`    | one or more  |
+| `?`    | zero or one  |
 
 Example: match `fn foo`:
 
@@ -86,10 +86,10 @@ Example: match `fn foo`:
 
 ## 🎯 **5. Anchors**
 
-|Symbol|Meaning|
-|---|---|
-|`^`|start of string|
-|`$`|end of string|
+| Symbol | Meaning         |
+| ------ | --------------- |
+| `^`    | start of string |
+| `$`    | end of string   |
 
 Examples:
 
@@ -157,11 +157,8 @@ mfn
 matches:
 
 - `main_function_name`
-    
 - `my_file_name`
-    
 - `module/fn.rs`
-    
 
 It’s surprisingly good.
 
@@ -172,11 +169,8 @@ It’s surprisingly good.
 When you want to search for something _exactly as written_:
 
 1. Identify special characters
-    
 2. Escape each with `%`
-    
 3. Keep everything else unchanged
-    
 
 Example:
 
@@ -194,4 +188,5 @@ foo%.bar%(baz%)
 
 ---
 
-If you want, I can help you build a **Rust‑specific Mini.pick search pack** — patterns for traits, impl blocks, lifetimes, generics, modules, and more.
+If you want, I can help you build a **Rust‑specific Mini.pick search pack** — patterns for traits, impl blocks,
+lifetimes, generics, modules, and more.
